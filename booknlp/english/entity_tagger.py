@@ -19,7 +19,7 @@ class LitBankEntityTagger:
 		self.model = Tagger(freeze_bert=False, base_model=base_model, tagset_flat={"EVENT":1, "O":1}, supersense_tagset=self.supersense_tagset, tagset=self.tagset, device=device)
 
 		self.model.to(device)
-		self.model.load_state_dict(torch.load(model_file, map_location=device))
+		self.model.load_state_dict(torch.load(model_file, map_location=device), strict=False)
 		wnsFile = pkg_resources.resource_filename(__name__, "data/wordnet.first.sense")
 		self.wns=self.read_wn(wnsFile)
 

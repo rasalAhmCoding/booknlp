@@ -16,7 +16,7 @@ class LitBankCoref:
 		base_model=re.sub(".model", "", base_model)
 
 		self.model = BERTCorefTagger(gender_cats=gender_cats, freeze_bert=True, base_model=base_model, pronominalCorefOnly=pronominalCorefOnly)
-		self.model.load_state_dict(torch.load(modelFile, map_location=device))
+		self.model.load_state_dict(torch.load(modelFile, map_location=device), strict=False)
 		self.model.to(device)
 		self.model.eval()
 
